@@ -1,3 +1,5 @@
+*.sublime*
+
 *.py[cod]
 
 # C extensions
@@ -33,3 +35,33 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Quartus and Verilog specific files
+
+db/
+greybox_tmp/
+incremental_db/
+simulation/
+
+*.rpt
+*.cdf
+*.done
+*.dpf
+*.ddb
+*.smsg
+*.summary
+*.bak
+
+*.sof
+*.srf
+*.qsf
+*.qpf
+*.qws
+*.sdc
+*.jdi
+*.qdf
+*.qip
+*.smf
+*.ppf
+
+PLLJ_PLLSPE_INFO.txt
