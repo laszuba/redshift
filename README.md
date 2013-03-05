@@ -1,7 +1,7 @@
 redshift
 ========
 
-A simple 16-bit processor implemented in MyHDL (Python)
+A simple 16-bit processor implemented in [MyHDL](http://www.myhdl.org/doku.php) (Python)
 
 Architecture
 ------------
