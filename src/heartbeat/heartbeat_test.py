@@ -1,30 +1,25 @@
 from myhdl import *
-import heartbeat
+from heartbeat import heartbeat
 
 def test_heartbeat():
 
-    clk, rst, beat = [Signal(bool(0)) for i in range(3)]
+    clock, beat = [Signal(bool(0)) for i in range(2)]
+    reset = ResetSignal(0, active=0, async=True)
 
-    heatbeat_inst = heartbeat(clk, rst, beat)
+    heatbeat_inst = heartbeat(clock, reset, beat, 10)
 
-    @always(delay(10)) 
-    def clkgen(): 
-        clk.next = not clk
-    
+    @always(delay(10))
+    def clockgen():
+        clock.next = not clock
+
     @instance
     def stimulus():
-        rst.next = False
-        yield delay(100)
-        rst.next = True
-        
-        raise StopSimulation
+        reset.next = bool(0)
+        yield delay(40)
+        reset.next = bool(1)
 
-    return heatbeat_inst, clkgen, stimulus
+    return heatbeat_inst, clockgen, stimulus
 
-
-def simulate(timesteps):
-    tb = traceSignals(test_heartbeat)
-    sim = Simulation(tb)
-    sim.run(timesteps)
-
-simulate(1000)
+tb = traceSignals(test_heartbeat)
+sim = Simulation(tb)
+sim.run(1000)

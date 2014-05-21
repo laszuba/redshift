@@ -1,21 +1,23 @@
 from myhdl import *
 
-def heartbeat(clk, rst, beat):
+def heartbeat(clock, reset, beat, n):
     """ Heartbeat generator
 
-    clk - clock input
-    rst - asyncronous reset
+    clock - clock input
+    reset - asyncronous reset
     beat - heartbeat output
+    n - maximum count
 
     """
-    width = 12
-    counter = Signal(modbv(0)[width:]) 
+    counter = Signal(intbv(0))
 
-    @always_seq(clock.posedge, rst.negedge)
-    def div1():
-        if reset = 0:
-            counter.next = 0
+    @always_seq(clock.posedge, reset=reset)
+    def heartbeatLogic():
+        counter.next = (counter + 1) % n
+
+        if (counter == 0) and (clock == 1):
+            beat.next = bool(1)
         else:
-            counter.next = counter + 1
-            beat.next = counter[width-1]
-    return div1
+            beat.next = bool(0)
+
+    return heartbeatLogic

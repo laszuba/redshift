@@ -10,6 +10,14 @@ Architecture
 * Instructions take one operand and operate on the working (w) register
 * Harvard architecture with separate program and data memory buses
 
+## Execution
+
+1. Fetch from program memory. Increment PC
+2. Decode instruction, read reg file
+3. Compute (ALU)
+4. Memory operation (load/store)
+5. Place result in register
+
 Registers
 ---------
 
@@ -86,4 +94,4 @@ Instruction Set
 
     BEQ  - branch if zero (ADD PC, W)
     1111 0000 0000 0000
-    
+

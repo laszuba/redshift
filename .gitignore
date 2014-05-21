@@ -36,6 +36,10 @@ nosetests.xml
 .project
 .pydevproject
 
+# Wave file
+
+*.vcd*
+
 # Quartus and Verilog specific files
 
 db/
